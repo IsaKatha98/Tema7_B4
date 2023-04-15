@@ -3,7 +3,6 @@ package ejercicio01;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
 public class MainAlumno {
 
 	static Scanner sc = new Scanner(System.in);
@@ -11,19 +10,20 @@ public class MainAlumno {
 	public static void main(String[] args) {
 
 		int opcion = 0;
-		int contador = 0;
 		String nombre;
 		int index;
 
 		Alumno[] grupo = new Alumno[30];
 
 		// Recorremos el array y creamos un objeto por cada posición del array.
-		for (int i = 0; i < grupo.length; i++) {
+		/*
+		 * for (int i = 0; i < grupo.length; i++) {
+		 * 
+		 * grupo[i] = new Alumno();
+		 * 
+		 * }
+		 */
 
-			grupo[i] = new Alumno();
-			
-		}
-		
 		System.out.println(Arrays.toString(grupo));
 
 		// Hacemos un bucle que se repita hasta que nos salgamos del programa.
@@ -48,23 +48,14 @@ public class MainAlumno {
 
 			case 2 -> {
 
-				// Buscamos la primera posición libre.
-				contador = posicionLibre(grupo);
+				// Llamamos a la función.
+				nuevoAlumno(grupo);
 
-				// En caso de que no encuentre ninguna posición libre.
-				if (contador < 0) {
-					System.out.println("No se pueden añadir más alumnos.");
-
-					// En caso de que haya una posición libre, llamamos a la funcion para añadir un
-					// disco nuevo.
-				} else {
-					nuevoAlumno(grupo, contador);
-
-				}
 			}
 
 			case 3 -> {
 
+				sc.nextLine();
 				// Preguntamos por el nombre de la persona que se quiere modificar.
 				System.out.println("Introduzca el nombre del/la alumno/a: ");
 				nombre = sc.nextLine();
@@ -77,15 +68,16 @@ public class MainAlumno {
 			}
 
 			case 4 -> {
-				
-				// Preguntamos por el nombre de la persona que se quiere modificar.
+
+				sc.nextLine();
+				// Preguntamos por el nombre de la persona que se quiere eliminar.
 				System.out.println("Introduzca el nombre del/la alumno/a a borrar: ");
 				nombre = sc.nextLine();
 
 				// Hay que buscar la posición en la que está esa persona.
-				index = indexAlumno(nombre, grupo);
+				// index = indexAlumno(nombre, grupo);
 
-				borrar(grupo, index, nombre);
+				borrar(grupo, nombre);
 			}
 
 			case 5 -> {
@@ -114,8 +106,8 @@ public class MainAlumno {
 		// Recorremos el array
 		for (Alumno alumno : grupo) {
 
-			// Imprimimos las posiciones cuyo nombre sea distinto de null.
-			if (!alumno.getNombre().equals(null)) {
+			// Imprimimos las posiciones que no sea null.
+			if (alumno != null) {
 
 				System.out.println(alumno);
 			}
@@ -123,42 +115,43 @@ public class MainAlumno {
 
 	}
 
-	private static int posicionLibre(Alumno[] grupo) {
-
-		int index = 0;
-
-		// Buscamos la primera posición que sea null.
-		while (index < grupo.length && !grupo[index].getNombre().equals(null)) {
-			index++;
-		}
-
-		// En caso de que no lo encuentre, index será -1
-		if (index == grupo.length) {
-			index = -1;
-		}
-
-		// Devolvemos index.
-		return index;
-	}
-
-	private static void nuevoAlumno(Alumno[] grupo, int contador) {
+	private static void nuevoAlumno(Alumno[] grupo) {
 
 		String nombre;
 		double notaMedia;
 
-		System.out.println("Introduzca el nombre del alumno/a: ");
-		nombre = sc.nextLine();
-		System.out.println("Introduzca la nota media: ");
-		notaMedia = sc.nextDouble();
+		// Recorremos el array.
+		for (int i = 0; i < grupo.length; i++) {
 
-		// Asiganmos todo a esa posición
-		grupo[contador] = new Alumno(nombre, notaMedia);
+			// En caso de que una posición sea igual a null, es que está libre.
+			if (grupo[i] == null) {
+
+				sc.nextLine();
+				System.out.println("Introduzca el nombre del alumno/a: ");
+				nombre = sc.nextLine();
+
+				System.out.println("Introduzca la nota media: ");
+				notaMedia = sc.nextDouble();
+
+				// Creamos un alumno nuevo en esa posición.
+				grupo[i] = new Alumno(nombre, notaMedia);
+
+				System.out.println("Se ha creado un registro con éxito.");
+
+				break;
+
+			} else {
+
+				System.out.println("No pueden añadirse más alumnos.");
+			}
+
+		}
 	}
 
 	private static void modificar(Alumno[] grupo, int index) {
 
 		// Si el alumno existe
-		if (index > 0) {
+		if (index >= 0) {
 
 			System.out.println("Introduzca la nota modificada: ");
 			grupo[index].setNotaMedia(sc.nextDouble());
@@ -186,18 +179,23 @@ public class MainAlumno {
 		return index;
 
 	}
-	
-	private static void borrar(Alumno[] grupo, int index, String nombre) {
 
-		// Buscamos esa posición y si existe lo cambiamos a null.
-		if (index >= 0 && index < grupo.length && !grupo[index].getNombre().equals(nombre)) {
+	private static void borrar(Alumno[] grupo, String nombre) {
 
-			grupo[index].setNombre(null);
+		// Llamamos a la función index.
+		int index = indexAlumno(nombre, grupo);
+
+		if (index >= 0) {
+
+			grupo[index] = null;
+
+			System.out.println("El borrado se ha completado con éxito.");
 
 		} else {
 
 			System.out.println("El nombre introducido no existe.");
 		}
+
 	}
 
 }
