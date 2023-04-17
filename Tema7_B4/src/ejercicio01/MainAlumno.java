@@ -17,13 +17,6 @@ public class MainAlumno {
 
 		Alumno[] grupo = new Alumno[30];
 
-		// Recorremos el array y creamos un objeto por cada posición del array.
-		for (int i = 0; i < grupo.length; i++) {
-
-			grupo[i] = new Alumno();
-			
-		}
-		
 		System.out.println(Arrays.toString(grupo));
 
 		// Hacemos un bucle que se repita hasta que nos salgamos del programa.
