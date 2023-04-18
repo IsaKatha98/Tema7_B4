@@ -19,7 +19,7 @@ public class Gestisimal {
 	}
 
 	public Gestisimal(int codigo, String descripcion, double precioCompra, double precioVenta, int stock) {
-		super();
+
 		this.codigo = codigo;
 		this.descripcion = descripcion;
 		this.precioCompra = precioCompra;
