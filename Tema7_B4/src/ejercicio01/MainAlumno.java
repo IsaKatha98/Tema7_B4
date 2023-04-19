@@ -16,16 +16,6 @@ public class MainAlumno {
 		Alumno[] grupo = new Alumno[30];
 
 
-		// Recorremos el array y creamos un objeto por cada posición del array.
-		/*
-		 * for (int i = 0; i < grupo.length; i++) {
-		 * 
-		 * grupo[i] = new Alumno();
-		 * 
-		 * }
-		 */
-
-
 		// Hacemos un bucle que se repita hasta que nos salgamos del programa.
 		do {
 
@@ -119,8 +109,9 @@ public class MainAlumno {
 
 		String nombre;
 		double notaMedia;
+		int index=0;
 
-		// Recorremos el array.
+		// Recorremos el array.Esto tiene que ser un while
 		for (int i = 0; i < grupo.length; i++) {
 
 			// En caso de que una posición sea igual a null, es que está libre.
@@ -140,7 +131,7 @@ public class MainAlumno {
 
 				break;
 
-			} else {
+			} else if (i>=grupo.length){
 
 				System.out.println("No pueden añadirse más alumnos.");
 			}

@@ -100,7 +100,7 @@ public class MainAlmacen {
 			}
 			}
 
-		} while (opcion != 5);
+		} while (opcion != 7);
 	}
 
 	private static void menu() {
