@@ -25,6 +25,7 @@ public class Pizza {
 		this.codigo = codigo;
 		this.size=Size.valueOf(size);
 		this.tipo=Tipo.valueOf(tipo);
+		this.estado=Estado.valueOf("Pedida");
 	
 	}
 

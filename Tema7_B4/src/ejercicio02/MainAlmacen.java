@@ -17,9 +17,6 @@ public class MainAlmacen {
 
 		System.out.println(art1.toString());
 
-		// Creamos un escáner.
-		Scanner sc = new Scanner(System.in);
-
 		// Declaramos las variables necesarias.
 		int opcion = 0;
 		int cod;
