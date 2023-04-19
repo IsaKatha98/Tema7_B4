@@ -15,6 +15,18 @@ public class MainAlumno {
 
 		Alumno[] grupo = new Alumno[30];
 
+<<<<<<< HEAD
+=======
+
+		// Recorremos el array y creamos un objeto por cada posición del array.
+		/*
+		 * for (int i = 0; i < grupo.length; i++) {
+		 * 
+		 * grupo[i] = new Alumno();
+		 * 
+		 * }
+		 */
+>>>>>>> branch 'master' of https://github.com/IsaKatha98/Tema7_B4.git
 
 
 		// Hacemos un bucle que se repita hasta que nos salgamos del programa.
