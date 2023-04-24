@@ -126,9 +126,18 @@ public class MainAlumno {
 
 				// Creamos un alumno nuevo en esa posición.
 				grupo[i] = new Alumno(nombre, notaMedia);
+				
 
-				System.out.println("Se ha creado un registro con éxito.");
-
+				if (notaMedia>=0&&notaMedia<=10)  {
+					
+					System.out.println("Se ha creado un registro con éxito.");
+					
+					
+				} else {
+					
+					System.out.println("La nota introducida no es válida.");
+				}
+				
 				break;
 
 			} else if (i>=grupo.length){
